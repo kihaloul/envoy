@@ -24,7 +24,7 @@ request. The router filter supports the following features:
   at the route level.
 * :ref:`Explicit host rewriting <envoy_v3_api_field_extensions.filters.http.aws_request_signing.v3.AwsRequestSigning.host_rewrite>`.
 * :ref:`Automatic host rewriting <envoy_v3_api_field_config.route.v3.RouteAction.auto_host_rewrite>` based on
-  the DNS name of the selected upstream host.
+  the DNS name of the selected upstream host or the IP address of the selected endpoint.
 * :ref:`Prefix rewriting <envoy_v3_api_field_config.route.v3.RedirectAction.prefix_rewrite>`.
 * :ref:`Path rewriting using a regular expression and capture groups <envoy_v3_api_field_config.route.v3.RouteAction.regex_rewrite>`.
 * :ref:`Request retries <arch_overview_http_routing_retry>` specified either via HTTP header or via

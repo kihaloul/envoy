@@ -33,8 +33,15 @@ StaticClusterImpl::StaticClusterImpl(
                       cluster.name()));
     }
     for (const auto& lb_endpoint : locality_lb_endpoint.lb_endpoints()) {
+      std::string effective_hostname;		
+      if (lb_endpoint.endpoint().hostname().empty()) {
+        effective_hostname = lb_endpoint.endpoint().address().socket_address().address() + 
+            std::to_string(lb_endpoint.endpoint().address().socket_address().port_value());
+      } else {		  
+        effective_hostname = lb_endpoint.endpoint().hostname();
+      }
       priority_state_manager_->registerHostForPriority(
-          lb_endpoint.endpoint().hostname(), resolveProtoAddress(lb_endpoint.endpoint().address()),
+          effective_hostname, resolveProtoAddress(lb_endpoint.endpoint().address()),
           locality_lb_endpoint, lb_endpoint, dispatcher.timeSource());
     }
   }
